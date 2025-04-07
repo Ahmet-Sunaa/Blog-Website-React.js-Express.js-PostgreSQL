@@ -1,0 +1,203 @@
+-- Kullanıcılar tablosu
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    role VARCHAR(255) NOT NULL
+);
+
+-- Postlar tablosu
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    detail TEXT,
+    date DATE NOT NULL,
+    authorName VARCHAR(255) NOT NULL,
+    keywords VARCHAR(255) NOT NULL,
+    entitle VARCHAR(255),
+    endetail TEXT,
+    enkeywords VARCHAR(255),
+    turkish_content_data JSONB,
+    english_content_data JSONB,
+    position int,
+    status bool
+);
+
+-- Resimler tablosu (1 resim birden fazla post'a bağlanabilir)
+CREATE TABLE images (
+    id SERIAL PRIMARY KEY,
+    data BYTEA NOT NULL
+);
+
+-- Post-Resim Many-to-Many ilişkisi için ara tablo
+CREATE TABLE post_images (
+    post_id INTEGER NOT NULL,
+    image_id INTEGER NOT NULL,
+    PRIMARY KEY (post_id, image_id),
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE
+);
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    sender_name VARCHAR(100) NOT NULL,
+    sender_email VARCHAR(100), -- Eğer giriş yapılmışsa buraya eklenecek
+    content TEXT NOT NULL,
+    user_id INT REFERENCES users(id) ON DELETE SET NULL, -- Kullanıcı giriş yapmışsa bağlanır
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+
+CREATE TABLE about (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content JSONB NOT NULL,
+    encontent JSONB NOT NULL
+
+);
+CREATE TABLE imageAbout (
+    id SERIAL PRIMARY KEY,
+    data BYTEA NOT NULL,
+    about_id INTEGER NOT NULL,
+    FOREIGN KEY (about_id) REFERENCES about(id) ON DELETE CASCADE
+
+);
+
+CREATE TABLE projects (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    date DATE NOT NULL,
+    projectowner VARCHAR(50) NOT NULL,
+    keywords VARCHAR(255) NOT NULL,
+    entitle VARCHAR(255),
+    encontent TEXT,
+    enkeywords VARCHAR(255)
+
+);
+
+CREATE TABLE publications (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    keywords VARCHAR(255) NOT NULL,
+    link TEXT,
+    entitle VARCHAR(255),
+    enkeywords VARCHAR(255)
+
+);
+CREATE TABLE teams (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    jobtitle VARCHAR(50) not NULL,
+    jobtitletype VARCHAR(100) not NULL,
+    enjobtitle VARCHAR(50) not NULL,
+    enjobtitletype VARCHAR(100) not NULL,
+    image BYTEA, 
+    email VARCHAR(100),
+    tel VARCHAR(100),
+    facebook VARCHAR(100),
+    instagram VARCHAR(100),
+    x VARCHAR(100),
+    youtube VARCHAR(100),
+    google VARCHAR(100),
+    behance VARCHAR(100),
+    github VARCHAR(100),
+    pinterest VARCHAR(100),
+    linkedin VARCHAR(100),
+    researchgate VARCHAR(100),
+    googlescholar VARCHAR(100),
+    priority int
+
+ );
+
+
+CREATE TABLE socialmedia (
+    id SERIAL PRIMARY KEY,
+    facebook VARCHAR(255),
+    instagram VARCHAR(255),
+    x VARCHAR(255),
+    youtube VARCHAR(255),
+    google VARCHAR(255),
+    behance VARCHAR(255),
+    github VARCHAR(255),
+    pinterest VARCHAR(255),
+    linkedin VARCHAR(255),
+    researchgate VARCHAR(255),
+    googlescholar VARCHAR(255)
+
+ );
+ CREATE TABLE pages (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    entitle VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    content TEXT,
+    status BOOLEAN DEFAULT TRUE,
+    content_data JSONB,
+    english_content_data JSONB,
+    pageno int,
+    isfilter BOOLEAN
+);
+CREATE TABLE page_color (
+    id SERIAL PRIMARY KEY,
+    color VARCHAR NOT NULL,
+    page_id INTEGER NOT NULL,
+    FOREIGN KEY (page_id) REFERENCES pages(id) ON DELETE CASCADE
+
+);
+CREATE TABLE underpage (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    isfilter BOOLEAN,
+    active BOOLEAN,
+    language VARCHAR(50),
+    pages_id INTEGER NOT NULL,
+    FOREIGN KEY (pages_id) REFERENCES page(id) ON DELETE CASCADE
+
+);
+
+
+CREATE TABLE homecontact (
+	id SERIAL DEFAULT nextval('"home-contact_id_seq"'::regclass) NOT NULL,
+	contactadress VARCHAR NULL,
+	contacttitle VARCHAR NULL,
+	contactphone VARCHAR NULL,
+	contactemail VARCHAR NULL,
+	contactentitle VARCHAR NULL,
+	hometitle VARCHAR NULL,
+	homeentitle VARCHAR NULL,
+	homecontent VARCHAR NULL,
+	homeencontent VARCHAR NULL,
+	homeblogstitle VARCHAR NULL,
+	homeenblogstitle VARCHAR NULL,
+	topbarcolor1 VARCHAR NULL,
+	topbarcolor2 VARCHAR NULL,
+	topbarcolor3 VARCHAR NULL,
+	headertitle VARCHAR NULL,
+	headericon VARCHAR NULL,
+	headertitlecolor VARCHAR NULL,
+	headercolor1 VARCHAR NULL,
+	headercolor2 VARCHAR NULL,
+	headercolor3 VARCHAR NULL,
+	headercolor4 VARCHAR NULL,
+	headercolor5 VARCHAR NULL,
+	headercolor6 VARCHAR NULL,
+	headercolor7 VARCHAR NULL,
+	headerlanguagebuttontext VARCHAR NULL,
+	headerlanguagebuttonentext VARCHAR NULL,
+	headercolor8 VARCHAR NULL,
+	footercolor VARCHAR NULL,
+	footertextcolor VARCHAR NULL,
+	CONSTRAINT home_contact_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE imagehomecontact (
+    id SERIAL PRIMARY KEY,
+    data BYTEA NOT NULL,
+    hc_id INTEGER NOT NULL,
+    FOREIGN KEY (hc_id) REFERENCES homecontact(id) ON DELETE CASCADE
+
+);

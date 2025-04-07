@@ -1,0 +1,8 @@
+npm install express cors dotenv mongoose
+npm install --save-dev nodemon
+npm install pg //postgre
+
+npm install express pg bcryptjs jsonwebtoken web token için(Login)
+npm install multer //resim için
+npm install nodemailer //mail için
+

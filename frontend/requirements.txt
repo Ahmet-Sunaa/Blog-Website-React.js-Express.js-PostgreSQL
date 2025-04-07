@@ -1,0 +1,19 @@
+npx create-react-app my-app
+
+npm install web-vitals
+
+npm install react-router-dom framer-motion
+
+npm install axios
+
+npm install @syncfusion/ej2-react-dropdowns –save
+
+npm install react-slick slick-carousel
+
+npm install react-bootstrap bootstrap
+
+npm install react-icons
+
+npm install draftjs
+
+npm install draftjs-to-html
