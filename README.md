@@ -28,19 +28,19 @@ Bu proje, **React.js**, **Express.js** ve **PostgreSQL** kullanılarak geliştir
 ### 📸 Görseller
 
 #### Ana Sayfa Genel Ayarları
-![Ana Sayfa Genel Ayarları](./screenshots/homepage.png)
+![Ana Sayfa Genel Ayarları](./screenshots/Home-Genel-ayar-değiştirme.png)
 
 #### Sayfa Yönetimi
-![Sayfa Yönetimi](./screenshots/post-detail.png)
+![Sayfa Yönetimi](./screenshots/Sayfa-Yönetim.png)
 
 #### Sayfa İçerik Yönetimi
-![Sayfa İçerik Yönetimi](./screenshots/homepage.png)
+![Sayfa İçerik Yönetimi](./screenshots/Sayfa-İçerik-Yönetim.png)
 
 #### Alt Başlık Yönetimi
-![Alt Başlık Yönetimi](./screenshots/post-detail.png)
+![Alt Başlık Yönetimi](./screenshots/Alt-Başlık-Ekleme.png)
 
 #### Blog Yönetimi
-![Blog Yönetimi](./screenshots/post-detail.png)
+![Blog Yönetimi](./screenshots/Blog.png)
 
 ---
 
@@ -110,20 +110,33 @@ This is a full-featured blog website built with **React.js**, **Express.js**, an
 
 
 #### Ana Sayfa Genel Ayarları
-![Home General Settings](./screenshots/homepage.png)
+![Home General Settings](./screenshots/Home-Genel-ayar-değiştirme.png)
 
 #### Sayfa Yönetimi
-![Page Management](./screenshots/post-detail.png)
+![Page Management](./screenshots/Sayfa-Yönetim.png)
 
 #### Sayfa İçerik Yönetimi
-![Page content Management](./screenshots/homepage.png)
+![Page content Management](./screenshots/Sayfa-İçerik-Yönetim.png)
 
 #### Alt Başlık Yönetimi
-![Under Page Title Management](./screenshots/post-detail.png)
+![Under Page Title Management](./screenshots/Alt-Başlık-Ekleme.png)
 
 #### Blog Yönetimi
-![Blog Management](./screenshots/post-detail.png)
+![Blog Management](./screenshots/Blog.png)
+#### Ana Sayfa Genel Ayarları
+![Ana Sayfa Genel Ayarları](./screenshots/Home-Genel-ayar-değiştirme.png)
 
+#### Sayfa Yönetimi
+![Sayfa Yönetimi](./screenshots/Sayfa-Yönetim.png)
+
+#### Sayfa İçerik Yönetimi
+![Sayfa İçerik Yönetimi](./screenshots/Sayfa-İçerik-Yönetim.png)
+
+#### Alt Başlık Yönetimi
+![Alt Başlık Yönetimi](./screenshots/Alt-Başlık-Ekleme.png)
+
+#### Blog Yönetimi
+![Blog Yönetimi](./screenshots/Blog.png)
 ---
 
 ### ⚙️ Setup & Run
