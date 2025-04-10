@@ -66,11 +66,7 @@ Katkılarınızı memnuniyetle karşılıyoruz. Fork'layın, geliştirin ve pull
 
 ---
 
-### 📄 Lisans
 
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
-
----
 
 ## 🇬🇧 English Description
 
@@ -138,8 +134,4 @@ We welcome all contributions! Fork the project, improve it, and send a pull requ
 
 ---
 
-### 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
-
----
