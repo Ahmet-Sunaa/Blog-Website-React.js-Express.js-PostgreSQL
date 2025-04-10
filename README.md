@@ -123,20 +123,7 @@ This is a full-featured blog website built with **React.js**, **Express.js**, an
 
 #### Blog Yönetimi
 ![Blog Management](./screenshots/Blog.png)
-#### Ana Sayfa Genel Ayarları
-![Ana Sayfa Genel Ayarları](./screenshots/Home-Genel-ayar-değiştirme.png)
 
-#### Sayfa Yönetimi
-![Sayfa Yönetimi](./screenshots/Sayfa-Yönetim.png)
-
-#### Sayfa İçerik Yönetimi
-![Sayfa İçerik Yönetimi](./screenshots/Sayfa-İçerik-Yönetim.png)
-
-#### Alt Başlık Yönetimi
-![Alt Başlık Yönetimi](./screenshots/Alt-Başlık-Ekleme.png)
-
-#### Blog Yönetimi
-![Blog Yönetimi](./screenshots/Blog.png)
 ---
 
 ### ⚙️ Setup & Run
