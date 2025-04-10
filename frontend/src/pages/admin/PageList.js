@@ -76,8 +76,8 @@ const PageList = () => {
         }
     };
 
-    // sayfanın düzenleme işlemi (parse edilen editör içerikleri burda yapılıyor)
-    const handleEdit = (page) => {
+
+    const parsedContent = (page) =>{
         let parsedContent = [];
 
         if (language === 'tr') {
@@ -137,6 +137,11 @@ const PageList = () => {
 
         console.log(page);
 
+    }
+
+    // sayfanın düzenleme işlemi (parse edilen editör içerikleri burda yapılıyor)
+    const handleEdit = (page) => {
+        parsedContent(page)
         setIsEditing(true);
         setShowModal(true);
     };
@@ -376,7 +381,7 @@ const PageList = () => {
     }
     // alt başlık değiştirme sayfasını açma işlemi ve currentpage değişkenine ilgili sayfanın verilerini aktarma
     const handleManageUnderPage = (page) => {
-        setCurrentPage(page);
+        parsedContent(page);
         setShowModalUnderPage(true);
     };
 
