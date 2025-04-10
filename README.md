@@ -3,7 +3,7 @@
 ## 🇹🇷 Türkçe Açıklama
 
 ### 📌 Proje Hakkında
-
+![Web Site Tanıtım Vieosu](./Blog-sitesi-tanıtım-videosu.mp4)
 Bu proje, **React.js**, **Express.js** ve **PostgreSQL** kullanılarak geliştirilmiş tam işlevsel bir blog web sitesidir. Kullanıcılar, içerik oluşturabilir, kategorilere göre filtreleyebilir ve blog gönderilerini yönetebilir.
 
 ### 🧰 Kullanılan Teknolojiler
@@ -27,11 +27,20 @@ Bu proje, **React.js**, **Express.js** ve **PostgreSQL** kullanılarak geliştir
 
 ### 📸 Görseller
 
-#### Ana Sayfa
-![Ana Sayfa](./screenshots/homepage.png)
+#### Ana Sayfa Genel Ayarları
+![Ana Sayfa Genel Ayarları](./screenshots/homepage.png)
 
-#### Gönderi Detayı
-![Gönderi Detayı](./screenshots/post-detail.png)
+#### Sayfa Yönetimi
+![Sayfa Yönetimi](./screenshots/post-detail.png)
+
+#### Sayfa İçerik Yönetimi
+![Sayfa İçerik Yönetimi](./screenshots/homepage.png)
+
+#### Alt Başlık Yönetimi
+![Alt Başlık Yönetimi](./screenshots/post-detail.png)
+
+#### Blog Yönetimi
+![Blog Yönetimi](./screenshots/post-detail.png)
 
 ---
 
@@ -66,7 +75,11 @@ Katkılarınızı memnuniyetle karşılıyoruz. Fork'layın, geliştirin ve pull
 
 ---
 
+### 📄 Lisans
 
+Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+
+---
 
 ## 🇬🇧 English Description
 
@@ -95,11 +108,21 @@ This is a full-featured blog website built with **React.js**, **Express.js**, an
 
 ### 📸 Screenshots
 
-#### Home Page
-![Home Page](./screenshots/homepage.png)
 
-#### Post Detail
-![Post Detail](./screenshots/post-detail.png)
+#### Ana Sayfa Genel Ayarları
+![Home General Settings](./screenshots/homepage.png)
+
+#### Sayfa Yönetimi
+![Page Management](./screenshots/post-detail.png)
+
+#### Sayfa İçerik Yönetimi
+![Page content Management](./screenshots/homepage.png)
+
+#### Alt Başlık Yönetimi
+![Under Page Title Management](./screenshots/post-detail.png)
+
+#### Blog Yönetimi
+![Blog Management](./screenshots/post-detail.png)
 
 ---
 
@@ -134,4 +157,8 @@ We welcome all contributions! Fork the project, improve it, and send a pull requ
 
 ---
 
+### 📄 License
 
+This project is licensed under the [MIT License](LICENSE).
+
+---
