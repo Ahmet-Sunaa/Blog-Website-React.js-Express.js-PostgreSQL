@@ -51,7 +51,7 @@ Bu proje, **React.js**, **Express.js** ve **PostgreSQL** kullanılarak geliştir
    git clone https://github.com/Ahmet-Sunaa/Blog-Website-React.js-Express.js-PostgreSQL.git
    ```
 2. Postgre Databasede SQL Terminali açın:
-   ![Veri Tabanı Kodları](./database.txt) deki kodlar ile veritabanını oluşturun.
+   [Veri Tabanı Kodları](./database.txt) deki kodlar ile veritabanını oluşturun.
 3. Backend kurulumu:
    ```bash
    cd backend
