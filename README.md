@@ -3,7 +3,7 @@
 ## 🇹🇷 Türkçe Açıklama
 
 ### 📌 Proje Hakkında
-![Web Site Tanıtım Vieosu](./Blog-sitesi-tanıtım-videosu.mp4)
+[Web Site Tanıtım Vieosu](./Blog-sitesi-tanıtım-videosu.mp4)
 Bu proje, **React.js**, **Express.js** ve **PostgreSQL** kullanılarak geliştirilmiş tam işlevsel bir blog web sitesidir. Kullanıcılar, içerik oluşturabilir, kategorilere göre filtreleyebilir ve blog gönderilerini yönetebilir.
 
 ### 🧰 Kullanılan Teknolojiler
@@ -51,7 +51,8 @@ Bu proje, **React.js**, **Express.js** ve **PostgreSQL** kullanılarak geliştir
    git clone https://github.com/Ahmet-Sunaa/Blog-Website-React.js-Express.js-PostgreSQL.git
    ```
 2. Postgre Databasede SQL Terminali açın:
-   [Veri Tabanı Kodları](./database.txt) deki kodlar ile veritabanını oluşturun.
+   [database.txt](./database.txt) dosyasındaki kodlar ile veritabanını oluşturun.
+
 3. Backend kurulumu:
    ```bash
    cd backend
@@ -134,14 +135,17 @@ This is a full-featured blog website built with **React.js**, **Express.js**, an
    git clone https://github.com/Ahmet-Sunaa/Blog-Website-React.js-Express.js-PostgreSQL.git
    ```
 
-2. Install backend dependencies:
+2. Open the SQL Terminal in PostgreSQL:
+   Use the code in the file [database.txt](./database.txt) to create the database.
+
+3. Install backend dependencies:
    ```bash
    cd backend
    npm install
    npm start
    ```
 
-3. Install frontend dependencies:
+4. Install frontend dependencies:
    ```bash
    cd ../frontend
    npm install
