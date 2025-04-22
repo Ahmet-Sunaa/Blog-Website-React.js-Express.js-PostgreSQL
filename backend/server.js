@@ -76,7 +76,7 @@ createAboutUsIfNotExist=async () => {
   const result = await pool.query(query,[]);
   if (result.rows.length ===0 ){
     const insertQuery = `INSERT INTO about (title, content) VALUES ($1, $2)`;
-    await pool.query(insertQuery, [" "," "]);
+    await pool.query(insertQuery, [" ",[{}]]);
   }
 
 } 
