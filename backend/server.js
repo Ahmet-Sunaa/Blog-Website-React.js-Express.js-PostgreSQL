@@ -76,7 +76,264 @@ createAboutUsIfNotExist=async () => {
   const result = await pool.query(query,[]);
   if (result.rows.length ===0 ){
     const insertQuery = `INSERT INTO about (title, content) VALUES ($1, $2)`;
-    await pool.query(insertQuery, [" ",[{}]]);
+    await pool.query(insertQuery, [" ",[
+  {
+    "type": "heading-one",
+    "children": [
+      {
+        "bold": true,
+        "text": "Lorem Ipsum Dolor A Sit TR",
+        "italic": true,
+        "fontSize": "24px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "bold": true,
+        "text": "Lorem ıpsum dolor a sit",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      },
+      {
+        "bold": true,
+        "text": " ",
+        "fontSize": "16px",
+        "fontFamily": "Courier New"
+      },
+      {
+        "bold": true,
+        "text": "Lorem ıpsum",
+        "fontSize": "16px",
+        "underline": true,
+        "fontFamily": "Courier New"
+      },
+      {
+        "bold": true,
+        "text": " dolor a ",
+        "fontSize": "16px",
+        "underline": true,
+        "fontFamily": "Verdana"
+      },
+      {
+        "text": "sit Lorem ",
+        "fontSize": "16px",
+        "underline": true,
+        "fontFamily": "Verdana"
+      },
+      {
+        "text": "ıpsum dol",
+        "italic": true,
+        "fontSize": "16px",
+        "underline": true,
+        "fontFamily": "Verdana"
+      },
+      {
+        "text": "or a sit Lorem ıpsum dolor a sit Lorem ",
+        "italic": true,
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      },
+      {
+        "bold": true,
+        "text": "ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit ",
+        "italic": true,
+        "fontSize": "16px",
+        "underline": true,
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "align": "center",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit ",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "align": "right",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit ",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit Lorem ıpsum dolor a sit ",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "numbered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "text": "Lorem 1"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "text": "Lorem 2"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "text": "lorem3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "bulleted-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "text": "Lorem 1"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "text": "Lorem 2"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "text": "Lorem 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://th.bing.com/th/id/R.98f1fc17b606afef39d7b367559ca39c?rik=4e7BQ3TTzxKf1A&pid=ImgRaw&r=0",
+    "type": "image",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "url": "https://th.bing.com/th/id/R.98f1fc17b606afef39d7b367559ca39c?rik=4e7BQ3TTzxKf1A&pid=ImgRaw&r=0",
+    "type": "link",
+    "children": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "Lorem Link",
+            "color": "#7f5cff",
+            "fontSize": "16px",
+            "fontFamily": "Verdana"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "code",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor Lorem ıpsum dolor Lorem ıpsum dolor Lorem ıpsum dolor Lorem ıpsum dolor ",
+        "color": "#ffffff",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "code",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor Lorem ıpsum dolor ",
+        "color": "#ffffff",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "code",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor ",
+        "color": "#ffffff",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "url": "https://google.com",
+    "type": "link",
+    "children": [
+      {
+        "type": "blockquote",
+        "children": [
+          {
+            "text": "Lorem ıpsum dolor",
+            "color": "#5c67ff",
+            "fontSize": "16px",
+            "fontFamily": "Verdana"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "heading-three",
+    "children": [
+      {
+        "text": "Lorem ıpsum dolor",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  },
+  {
+    "type": "heading-two",
+    "children": [
+      {
+        "text": "",
+        "fontSize": "16px",
+        "fontFamily": "Verdana"
+      }
+    ]
+  }
+]]);
   }
 
 } 
