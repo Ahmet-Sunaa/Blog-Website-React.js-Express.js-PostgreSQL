@@ -45,15 +45,15 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/users",
+      /*await axios.post("http://localhost:5000/users",
         {
           username: formData.username,
           email: formData.email,
           password: formData.password,
         }, // Verileri gönder
         { headers: { Authorization: `Bearer ${token}` } });
-
-      alert("Kayıt başarılı!");
+*/
+      alert("Kayıt başarılı! (Güvenlik sebebi ile bu işlem çalışmamaktadır!!!!)");
       navigate("/login"); // Başarıyla kayıt olduktan sonra giriş sayfasına yönlendirme
 
     } catch (error) {

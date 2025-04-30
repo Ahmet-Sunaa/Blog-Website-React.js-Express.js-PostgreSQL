@@ -35,6 +35,8 @@ const AboutEdit = () => {
   const handleSave = (e) => {
     const jsonContent = JSON.stringify(content);
     const jsonEnContent = JSON.stringify(enContent);
+    console.log(jsonContent)
+    console.log(jsonEnContent)
     e.preventDefault();
     axios.put('http://localhost:5000/about-us',
       { title, jsonContent, enTitle, jsonEnContent },
@@ -115,35 +117,58 @@ const AboutEdit = () => {
         src: `data:image/png;base64,${img}`
       })));
   
-      let parsedContent, parsedEnContent;
+      let parsedContent=[], enParsedContent=[];
   
       // Eğer content bir string ise JSON.parse et, değilse direkt ata
       if (typeof res.data.content === "string") {
-        try {
-          parsedContent = JSON.parse(res.data.content);
-          if (!Array.isArray(parsedContent)) throw new Error("Invalid JSON structure");
-        } catch (error) {
-          console.error("content JSON parse error:", error);
-          parsedContent = [{ type: "paragraph", children: [{ text: "" }] }];
+            try {
+                parsedContent = JSON.parse(res.data.content);
+
+                // Eğer parse edilen veri bir array değilse, array içine al
+                if (!Array.isArray(parsedContent)) {
+                    parsedContent = [parsedContent];
+                }
+            } catch (error) {
+                console.error("JSON parse hatası:", error);
+                parsedContent = []; // Hata olursa boş bir array döndür
+            }
         }
-      } else {
-        parsedContent = res.data.content; // JSON değilse direkt ata
-      }
-  
-      if (typeof res.data.encontent === "string") {
-        try {
-          parsedEnContent = JSON.parse(res.data.encontent);
-          if (!Array.isArray(parsedEnContent)) throw new Error("Invalid JSON structure");
-        } catch (error) {
-          console.error("encontent JSON parse error:", error);
-          parsedEnContent = [{ type: "paragraph", children: [{ text: "" }] }];
+        // Eğer content_data zaten bir array ise direkt ata
+        else if (Array.isArray(res.data.content)) {
+            parsedContent = res.data.content;
         }
-      } else {
-        parsedEnContent = res.data.encontent; // JSON değilse direkt ata
-      }
-  
+        // Eğer content_data bir obje ise array içine al
+        else if (typeof res.data.content === "object") {
+            parsedContent = [res.data.content];
+        }
+
+        if (typeof res.data.encontent === "string") {
+            try {
+                enParsedContent = JSON.parse(res.data.encontent);
+
+                // Eğer parse edilen veri bir array değilse, array içine al
+                if (!Array.isArray(enParsedContent)) {
+                    enParsedContent = [enParsedContent];
+                }
+            } catch (error) {
+                console.error("JSON parse hatası:", error);
+                enParsedContent = []; // Hata olursa boş bir array döndür
+            }
+        }
+        // Eğer content_data zaten bir array ise direkt ata
+        else if (Array.isArray(res.data.encontent)) {
+            enParsedContent = res.data.encontent;
+        }
+        // Eğer content_data bir obje ise array içine al
+        else if (typeof res.data.encontent === "object") {
+            enParsedContent = [res.data.encontent];
+        }
+
+      console.log(parsedContent)
+      console.log(enParsedContent)
+      
       setContent(parsedContent);
-      setEnContent(parsedEnContent);
+      setEnContent(enParsedContent);
       
     } catch (err) {
       console.error("API Error:", err);
@@ -158,6 +183,7 @@ const AboutEdit = () => {
   const editorContentSaveTr = async (editorContent) => {
     if (!editorContent || editorContent.length === 0) return;
     setContent(editorContent); // Direkt set et
+    console.log(editorContent);
   };
 
   const editorContentSaveEn = async (editorContent) => {
@@ -187,11 +213,13 @@ const AboutEdit = () => {
 
               <label>İçerik:</label>
               {/* <textarea value={content} onChange={(e) => setContent(e.target.value)} rows="10" /> */}
-              <TextEditor
+              
+                <TextEditor
                 value={Array.isArray(content) ? content : [{ type: "paragraph", children: [{ text: "" }] }]}
                 onSave={editorContentSaveTr}
               />
-
+              
+              
               <button type="submit">Kaydet</button>
               {message && <p>{message}</p>}
 
@@ -234,11 +262,6 @@ const AboutEdit = () => {
               <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
               <label>Turkish Content:</label>
-              {/* <textarea value={content} onChange={(e) => setContent(e.target.value)} rows="10" /> */}
-              <TextEditor
-                value={Array.isArray(content) ? content : [{ type: "paragraph", children: [{ text: "" }] }]}
-                onSave={editorContentSaveTr}
-              />
 
               <label>Title:</label>
               <input type="text" value={enTitle} onChange={(e) => setEnTitle(e.target.value)} />

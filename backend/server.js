@@ -74,9 +74,13 @@ const createAdminIfNotExist = async () => {
 createAboutUsIfNotExist=async () => {
   const query = `SELECT * FROM about`
   const result = await pool.query(query,[]);
-  if (result.rows.length ===0 ){
-    const insertQuery = `INSERT INTO about (title, content) VALUES ($1, $2)`;
-    await pool.query(insertQuery, [" "," "]);
+  try{
+    if (result.rows.length ===0 ){
+      const insertQuery = `INSERT INTO about (title, entitle, content, encontent) VALUES ($1, $2, $3, $4)`;
+      await pool.query(insertQuery, [" ", " ", "[[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]]","[[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]]"]);
+    }
+  }catch (err){
+    console.error(err);
   }
 
 } 

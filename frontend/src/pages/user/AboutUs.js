@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useLanguage } from "../../context/LanguageContext";
 import "./User.css";
-import { createEditor } from "slate";
+import { createEditor, string } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { useLocation } from "react-router-dom";
 
@@ -19,27 +19,29 @@ const AboutUs = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setIsLoading(true); 
+    setIsLoading(true);
     const pathSlug = location.pathname.split("/").pop() || "home";
 
     Promise.all([
       axios.get("http://localhost:5000/about-us"),
       axios.get(`http://localhost:5000/menu-pages/user/${pathSlug}`)
     ])
-    .then(([aboutRes, colorRes]) => {
-      const page = aboutRes.data;
-        console.log(aboutRes.data);
+      .then(([aboutRes, colorRes]) => {
+        const page = aboutRes.data;
         const formattedPages = {
           ...page,
-          content: typeof page.content === "string" ? JSON.parse(page.content) : page.content || [],
-          encontent: typeof page.encontent === "string" ? JSON.parse(page.encontent) : page.encontent || [],
+          content: page.content ? typeof(page.content)===string ? JSON.parse(page.content) : page.content : [],
+          encontent: page.encontent ? typeof(page.encontent)===string ? JSON.parse(page.encontent) : page.encontent : [],
         };
         setAbout(formattedPages); // Direkt olarak API'den gelen veriyi set ediyoruz
-
-      setColor(colorRes.data.color);
-    })
-    .catch(err => console.error("Error fetching data:", err))
-    .finally(() => setIsLoading(false));
+        formattedPages.content.map((item)=>{
+          console.log(item);
+        })
+        console.log(formattedPages);
+        setColor(colorRes.data.color);
+      })
+      .catch(err => console.error("Error fetching data:", err))
+      .finally(() => setIsLoading(false));
   }, [language, location.pathname]);
 
   useEffect(() => {
@@ -50,7 +52,7 @@ const AboutUs = () => {
     }
   }, [about, language]);
 
-  
+
   const settingsInner = {
     dots: true,
     infinite: true,
@@ -157,40 +159,40 @@ const AboutUs = () => {
         return <p {...attributes} style={style}>{children}</p>;
     }
   };
-  if (isLoading || !about){
+  if (isLoading || !about) {
     return <h2>Yükleniyor ...</h2>
   }
   return about ? (
-    <div style={{backgroundColor: color[0]}}>
-    <div className="about-container" style={{backgroundColor: color[1]}}>
-      {language === 'tr' && (
-        <>
-          {/* Resim Carousel */}
-          {about.images.length > 1 && (
-            <Slider style={{ posisiton: 'static !important' }} {...settingsInner}>
-              {about.images.map((image, index) => (
-                <div key={index}>
-                  <img
-                    src={`data:image/png;base64,${image}`}
-                    alt={`Post ${about.id} - Image ${index + 1}`}
-                    className="post-image-detail"
-                  />
-                </div>
-              ))}
-            </Slider>
-          )}
-          {about.images.length === 1 && about.images[0] !== null && (
-            <div>
-              <img
-                src={`data:image/png;base64,${about.images[0]}`}
-                alt={about.title}
-                className="post-image"
-              />
-            </div>
-          )}
-          <h1 className="about-title" >{about.title}</h1>
-          
-            <div key={`tr-1`} className="content-item" style={{backgroundColor: color[2]}}>
+    <div style={{ backgroundColor: color[0] }}>
+      <div className="about-container" style={{ backgroundColor: color[1] }}>
+        {language === 'tr' && (
+          <>
+            {/* Resim Carousel */}
+            {about.images.length > 1 && (
+              <Slider style={{ posisiton: 'static !important' }} {...settingsInner}>
+                {about.images.map((image, index) => (
+                  <div key={index}>
+                    <img
+                      src={`data:image/png;base64,${image}`}
+                      alt={`Post ${about.id} - Image ${index + 1}`}
+                      className="post-image-detail"
+                    />
+                  </div>
+                ))}
+              </Slider>
+            )}
+            {about.images.length === 1 && about.images[0] !== null && (
+              <div>
+                <img
+                  src={`data:image/png;base64,${about.images[0]}`}
+                  alt={about.title}
+                  className="post-image"
+                />
+              </div>
+            )}
+            <h1 className="about-title" >{about.title}</h1>
+
+            {/* <div key={`tr-1`} className="content-item" style={{ backgroundColor: color[2] }}> */}
               {/* Metin */}
               <div>
                 <Slate editor={editor} initialValue={Array.isArray(about.content) ? about.content : [about.content]} >
@@ -203,40 +205,40 @@ const AboutUs = () => {
                 </Slate>
 
               </div>
+            {/* </div> */}
+
+            <div className="author">
+              <Link to="/" className="back-link">← Geri Dön</Link>
             </div>
-          
-          <div className="author">
-            <Link to="/" className="back-link">← Geri Dön</Link>
-          </div>
-        </>
-      )}
-      {language === 'en' && about.entitle !== '' && about.encontent !== '[]' && about.entitle !== null && about.encontent !== null && (
-        <>
-          {/* Resim Carousel */}
-          {about.images.length > 1 && (
-            <Slider style={{ posisiton: 'static !important' }} {...settingsInner}>
-              {about.images.map((image, index) => (
-                <div key={index}>
-                  <img
-                    src={`data:image/png;base64,${image}`}
-                    alt={`Post ${about.id} - Image ${index + 1}`}
-                    className="post-image-detail"
-                  />
-                </div>
-              ))}
-            </Slider>
-          )}
-          {about.images.length === 1 && about.images[0] !== null && (
-            <div>
-              <img
-                src={`data:image/png;base64,${about.images[0]}`}
-                alt={about.title}
-                className="post-image"
-              />
-            </div>
-          )}
-          <h1 className="about-title">{about.entitle}</h1>
-            <div key={`en-1`} className="content-item" style={{backgroundColor: color[2]}}>
+          </>
+        )}
+        {language === 'en' && about.entitle !== '' && about.encontent !== '[]' && about.entitle !== null && about.encontent !== null && (
+          <>
+            {/* Resim Carousel */}
+            {about.images.length > 1 && (
+              <Slider style={{ posisiton: 'static !important' }} {...settingsInner}>
+                {about.images.map((image, index) => (
+                  <div key={index}>
+                    <img
+                      src={`data:image/png;base64,${image}`}
+                      alt={`Post ${about.id} - Image ${index + 1}`}
+                      className="post-image-detail"
+                    />
+                  </div>
+                ))}
+              </Slider>
+            )}
+            {about.images.length === 1 && about.images[0] !== null && (
+              <div>
+                <img
+                  src={`data:image/png;base64,${about.images[0]}`}
+                  alt={about.title}
+                  className="post-image"
+                />
+              </div>
+            )}
+            <h1 className="about-title">{about.entitle}</h1>
+            {/* <div key={`en-1`} className="content-item" style={{ backgroundColor: color[2] }}> */}
               {/* Metin */}
               <div>
                 <Slate editor={editor} initialValue={Array.isArray(about.encontent) ? about.encontent : [about.encontent]} >
@@ -249,14 +251,14 @@ const AboutUs = () => {
                 </Slate>
 
               </div>
+            {/* </div> */}
+            <div className="author">
+              <Link to="/" className="back-link">← Back</Link>
             </div>
-          <div className="author">
-            <Link to="/" className="back-link">← Back</Link>
-          </div>
-        </>
-      )}
+          </>
+        )}
 
-    </div>
+      </div>
     </div>
   ) : <h2>Post not found!</h2>;
 }

@@ -27,11 +27,17 @@ router.get("/", async (req, res) => {
 
     const abouts = result.rows.map(about => {
       if(about.images[0] === null){
-        return about;
+        return {
+          ...about,
+          content: about.content || "",
+          encontent: about.encontent || ""
+        };
       }
       else{
           return { 
           ...about, 
+          content: about.content || "",
+          encontent: about.encontent || "",
           images: about.images.map(img => img.toString('base64')) // Her resmi Base64 formatına çevir
         };
       }
@@ -39,6 +45,7 @@ router.get("/", async (req, res) => {
     res.json(abouts[0]);
     
   } catch (err) {
+    console.error(err);
     res.status(500).send("Server error");
   }
 });
@@ -64,11 +71,17 @@ router.get("/admin",authenticateAdmin, async (req, res) => {
 
     const abouts = result.rows.map(about => {
       if(about.images[0] === null){
-        return about;
+        
+        return {...about,
+          content: about.content || "",
+          encontent: about.encontent || ""
+        }
       }
       else{
           return { 
           ...about, 
+          content: about.content || "",
+          encontent: about.encontent || "",
           images: about.images.map(img => img.toString('base64')) // Her resmi Base64 formatına çevir
         };
       }
@@ -83,7 +96,7 @@ router.get("/admin",authenticateAdmin, async (req, res) => {
 router.put('/',authenticateAdmin, async (req, res) => {
   const { title, jsonContent, enTitle, jsonEnContent } = req.body;
   try {
-    await pool.query('UPDATE about SET title = $1, content = $2, entitle = $3, encontent = $4 WHERE id = 1', [title, jsonContent, enTitle, jsonEnContent]);
+    await pool.query('UPDATE about SET title = $1, content = $2, entitle = $3, encontent = $4 WHERE id = 9', [title, jsonContent, enTitle, jsonEnContent]);
     res.json({ message: 'Başarıyla güncellendi' });
   } catch (error) {
     console.error(error);

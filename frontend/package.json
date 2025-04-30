@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/helper-validator-identifier": "^7.25.9",
     "@syncfusion/ej2-react-dropdowns": "^28.2.5",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",

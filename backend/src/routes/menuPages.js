@@ -84,11 +84,12 @@ router.get("/", async (req, res) => {
             FROM pages AS p
             ORDER BY p.pageno ASC;
 `);
-        if (result.rows.length > 0) {
-            res.json(result.rows);
-        } else {
-            res.status(404).json({ error: "Sayfa bulunamadı2." });
-        }
+res.json(result.rows);
+        // if (result.rows.length > 0) {
+        //     
+        // } else {
+        //     res.status(404).json({ error: "Sayfa bulunamadı2." });
+        // }
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Sayfa alınırken hata oluştu." });
@@ -97,48 +98,54 @@ router.get("/", async (req, res) => {
 /* admin için get metodu */
 
 router.get("/admin-get", authenticateAdmin, async (req, res) => {
-    const result = await pool.query(`
-        SELECT 
-                p.id, 
-                p.title, 
-                p.slug, 
-                p.status,
-                p.entitle, 
-                p.template, 
-                p.content_data, 
-                p.english_content_data,
-                p.pageno, 
-                p.isfilter,
-                p.headerstatus,
-                (SELECT  ARRAY_AGG(c.id ORDER BY c.id ASC)  
-                FROM page_colors AS c 
-                WHERE c.page_id = p.id) AS cid, 
-                (SELECT ARRAY_AGG(c.color ORDER BY c.id ASC) 
-                FROM page_colors AS c 
-                WHERE c.page_id = p.id) AS color, 
-                (SELECT ARRAY_AGG(u.id) 
-                FROM underpage AS u 
-                WHERE u.pages_id = p.id) AS uid,
-                (SELECT ARRAY_AGG(u.title) 
-                FROM underpage AS u 
-                WHERE u.pages_id = p.id) AS utitle,
-                (SELECT ARRAY_AGG(u.active) 
-                FROM underpage AS u 
-                WHERE u.pages_id = p.id) AS uactive,
-                (SELECT ARRAY_AGG(u.language) 
-                FROM underpage AS u 
-                WHERE u.pages_id = p.id) AS ulanguage,
-                (SELECT ARRAY_AGG(u.filter) 
-                FROM underpage AS u 
-                WHERE u.pages_id = p.id) AS filter
-            FROM pages AS p
-            ORDER BY p.pageno ASC;
-`);
-    if (result.rows.length > 0) {
-        res.json(result.rows);
-    } else {
-        res.status(404).json({ error: "Sayfa bulunamadı2." });
+    try{
+        const result = await pool.query(`
+            SELECT 
+                    p.id, 
+                    p.title, 
+                    p.slug, 
+                    p.status,
+                    p.entitle, 
+                    p.template, 
+                    p.content_data, 
+                    p.english_content_data,
+                    p.pageno, 
+                    p.isfilter,
+                    p.headerstatus,
+                    (SELECT  ARRAY_AGG(c.id ORDER BY c.id ASC)  
+                    FROM page_colors AS c 
+                    WHERE c.page_id = p.id) AS cid, 
+                    (SELECT ARRAY_AGG(c.color ORDER BY c.id ASC) 
+                    FROM page_colors AS c 
+                    WHERE c.page_id = p.id) AS color, 
+                    (SELECT ARRAY_AGG(u.id) 
+                    FROM underpage AS u 
+                    WHERE u.pages_id = p.id) AS uid,
+                    (SELECT ARRAY_AGG(u.title) 
+                    FROM underpage AS u 
+                    WHERE u.pages_id = p.id) AS utitle,
+                    (SELECT ARRAY_AGG(u.active) 
+                    FROM underpage AS u 
+                    WHERE u.pages_id = p.id) AS uactive,
+                    (SELECT ARRAY_AGG(u.language) 
+                    FROM underpage AS u 
+                    WHERE u.pages_id = p.id) AS ulanguage,
+                    (SELECT ARRAY_AGG(u.filter) 
+                    FROM underpage AS u 
+                    WHERE u.pages_id = p.id) AS filter
+                FROM pages AS p
+                ORDER BY p.pageno ASC;
+    `);
+    res.json(result.rows);
+        // if (result.rows.length > 0) {
+        //     res.json(result.rows);
+        // } else {
+        //     res.status(404).json({ error: "Sayfa bulunamadı2." });
+        // }
+    } catch(err){
+        console.error(err)
     }
+    
 });
 
 //sayfa ekleme metodu

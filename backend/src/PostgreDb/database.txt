@@ -53,7 +53,6 @@ CREATE TABLE messages (
 CREATE TABLE about (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    entitle VARCHAR(255) NOT NULL,
     content JSONB NOT NULL,
     encontent JSONB NOT NULL
 
@@ -136,15 +135,13 @@ CREATE TABLE socialmedia (
     entitle VARCHAR(255) NOT NULL,
     slug VARCHAR(255) UNIQUE NOT NULL,
     content TEXT,
-    template TEXT,
     status BOOLEAN DEFAULT TRUE,
     content_data JSONB,
     english_content_data JSONB,
     pageno int,
-    isfilter BOOLEAN,
-    headerstatus BOOLEAN
+    isfilter BOOLEAN
 );
-CREATE TABLE page_colors (
+CREATE TABLE page_color (
     id SERIAL PRIMARY KEY,
     color VARCHAR NOT NULL,
     page_id INTEGER NOT NULL,
@@ -154,17 +151,17 @@ CREATE TABLE page_colors (
 CREATE TABLE underpage (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    filter BOOLEAN,
+    isfilter BOOLEAN,
     active BOOLEAN,
     language VARCHAR(50),
     pages_id INTEGER NOT NULL,
-    FOREIGN KEY (pages_id) REFERENCES page(id) ON DELETE CASCADE
+    FOREIGN KEY (pages_id) REFERENCES pages(id) ON DELETE CASCADE
 
 );
 
 
 CREATE TABLE homecontact (
-	id SERIAL DEFAULT nextval('"home-contact_id_seq"'::regclass) NOT NULL,
+    id SERIAL PRIMARY KEY,
 	contactadress VARCHAR NULL,
 	contacttitle VARCHAR NULL,
 	contactphone VARCHAR NULL,
@@ -193,8 +190,7 @@ CREATE TABLE homecontact (
 	headerlanguagebuttonentext VARCHAR NULL,
 	headercolor8 VARCHAR NULL,
 	footercolor VARCHAR NULL,
-	footertextcolor VARCHAR NULL,
-	CONSTRAINT home_contact_pk PRIMARY KEY (id)
+	footertextcolor VARCHAR NULL
 );
 
 CREATE TABLE imagehomecontact (

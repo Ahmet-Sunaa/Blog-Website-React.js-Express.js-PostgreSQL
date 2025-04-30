@@ -52,7 +52,7 @@ const Users = () => {
 
     //userı güncelleme
     const handleUpdateUser = async () => {
-
+/*
         try {
             await axios.put(`http://localhost:5000/users`, editingUser, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -64,12 +64,12 @@ const Users = () => {
             localStorage.removeItem('token');
 
             setError(error.response.data.message);
-        }
+        }*/
     };
 
     // kullanıcı silme
     const handleDeleteUser = async () => {
-        try {
+        /*try {
             await axios.delete(`http://localhost:5000/users`, {
                 headers: { Authorization: `Bearer ${token}` },
                 data: { id: editingUser.id, password: editingUser.oldpassword }  // Doğru kullanım!
@@ -81,7 +81,7 @@ const Users = () => {
             localStorage.removeItem('token');
 
             setError(error.response.data.message);
-        }
+        }*/
     };
     
     if (isAdmin === false) {

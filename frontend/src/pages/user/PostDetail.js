@@ -29,7 +29,7 @@ const PostDetail = () => {
             english_content_data: page.english_content_data ? JSON.parse(page.english_content_data) : [], // JSON parse işlemi yap
           }
           setPost(formattedPages);
-          
+          console.log(formattedPages);
         })
         .catch(() => localStorage.removeItem("token"))
         .finally(setIsLoading(false));
@@ -212,11 +212,12 @@ const PostDetail = () => {
             {language === "tr" ? (
               <React.Fragment>
                 {post.turkish_content_data.map((item, index) => (
-
+                  
                   <div className="content-container" key={`tr-${index}`} style={{backgroundColor: color[5]}}>
                     <div key={index} className="content-item">
                       {/* Metin */}
                       <div>
+                        {console.log(item)}
                         <Slate editor={editor} initialValue={item} >
                           <Editable
                             readOnly

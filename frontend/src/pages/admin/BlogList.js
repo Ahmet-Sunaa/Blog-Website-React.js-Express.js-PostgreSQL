@@ -140,7 +140,8 @@ const BlogList = () => {
         else if (typeof page.english_content_data === "object") {
             enParsedContent = [page.english_content_data];
         }
-
+        console.log(parsedContent)
+        console.log(enParsedContent)
         setCurrentBlogs({
             ...page,
             turkish_content_data: parsedContent,

@@ -20,6 +20,7 @@ const TextEditor = ({ value, onSave }) => {
   const [fontFamily, setFontFamily] = useState(FONT_FAMILIES[0]);
   const [fontSize, setFontSize] = useState(FONT_SIZES[0]);
   // ✅ Eğer dışarıdan gelen `value` değişirse, editörü güncelle
+
   useEffect(() => {
     setEditorValue(value);
   }, [value]);
