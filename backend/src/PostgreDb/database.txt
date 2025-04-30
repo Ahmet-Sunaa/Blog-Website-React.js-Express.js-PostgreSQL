@@ -53,6 +53,7 @@ CREATE TABLE messages (
 CREATE TABLE about (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    entitle VARCHAR(255) NOT NULL,
     content JSONB NOT NULL,
     encontent JSONB NOT NULL
 
@@ -135,13 +136,15 @@ CREATE TABLE socialmedia (
     entitle VARCHAR(255) NOT NULL,
     slug VARCHAR(255) UNIQUE NOT NULL,
     content TEXT,
+    template TEXT,
     status BOOLEAN DEFAULT TRUE,
     content_data JSONB,
     english_content_data JSONB,
     pageno int,
-    isfilter BOOLEAN
+    isfilter BOOLEAN,
+    headerstatus BOOLEAN
 );
-CREATE TABLE page_color (
+CREATE TABLE page_colors (
     id SERIAL PRIMARY KEY,
     color VARCHAR NOT NULL,
     page_id INTEGER NOT NULL,
@@ -151,7 +154,7 @@ CREATE TABLE page_color (
 CREATE TABLE underpage (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    isfilter BOOLEAN,
+    filter BOOLEAN,
     active BOOLEAN,
     language VARCHAR(50),
     pages_id INTEGER NOT NULL,
