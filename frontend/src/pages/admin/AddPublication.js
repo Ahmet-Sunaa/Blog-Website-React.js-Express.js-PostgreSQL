@@ -49,7 +49,7 @@ const AddPublication = () => {
     try {
       // 1. Yayını ekle
       const response = await axios.post(
-        "http://localhost:5000/publications/", // API'yi doğru URL'ye yönlendiriyoruz
+        `${process.env.REACT_APP_API_URL}/publications/`, // API'yi doğru URL'ye yönlendiriyoruz
         { title, date, keywords, link, enTitle, enKeywords }, // Verileri gönder
         { headers: { Authorization: `Bearer ${token}` } } // Headers'ı ekliyoruz
       );

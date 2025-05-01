@@ -36,7 +36,7 @@ const Messages = () => {
 
     // 📩 Mesajları Getir
     const fetchMessages = async () => {
-            const res = await axios.get("http://localhost:5000/message", {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/message`, {
                 headers: { Authorization: `Bearer ${token}` },
             }).catch(() => {localStorage.removeItem("token"); navigate("/login")});
             setMessages(res.data);
@@ -46,7 +46,7 @@ const Messages = () => {
     // ✅ Okundu/Okunmadı Durumunu Değiştir
     const toggleReadStatus = async (id) => {
         try {
-            const res = await fetch(`http://localhost:5000/message/${id}/toggle-read`, {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/message/${id}/toggle-read`, {
                 method: "PUT",
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -70,7 +70,7 @@ const Messages = () => {
         if (!window.confirm("Bu mesajı silmek istediğinizden emin misiniz?")) return;
 
         try {
-            await fetch(`http://localhost:5000/message/${id}`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/message/${id}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });

@@ -47,7 +47,7 @@ const EditProject = () => {
   //verileri çekme
   const getItems = async () => {
     axios
-      .get(`http://localhost:5000/projects/proje/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/projects/proje/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -76,7 +76,7 @@ const EditProject = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/projects/update-project`,
+        `${process.env.REACT_APP_API_URL}/projects/update-project`,
         { id, title, content, date, projectOwner, keywords, enTitle, enContent, enKeywords },
         { headers: { Authorization: `Bearer ${token}` } }
       );

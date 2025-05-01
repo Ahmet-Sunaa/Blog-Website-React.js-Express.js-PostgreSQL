@@ -16,7 +16,7 @@ const MemberDetails = () => {
             <button className="back-button" onClick={() => navigate(-1)}>← Geri</button>
             <div className="member-card">
                 <div className="member-image">
-                    <img src={`http://localhost:5000/teams/image/${member.id}`} alt={member.name} />
+                    <img src={`${process.env.REACT_APP_API_URL}/teams/image/${member.id}`} alt={member.name} />
                 </div>
                 <div className="member-info">
                     <h2>{member.name}</h2>

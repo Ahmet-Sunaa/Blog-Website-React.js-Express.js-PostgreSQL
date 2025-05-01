@@ -23,8 +23,8 @@ const AboutUs = () => {
     const pathSlug = location.pathname.split("/").pop() || "home";
 
     Promise.all([
-      axios.get("http://localhost:5000/about-us"),
-      axios.get(`http://localhost:5000/menu-pages/user/${pathSlug}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/about-us`),
+      axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${pathSlug}`)
     ])
       .then(([aboutRes, colorRes]) => {
         const page = aboutRes.data;

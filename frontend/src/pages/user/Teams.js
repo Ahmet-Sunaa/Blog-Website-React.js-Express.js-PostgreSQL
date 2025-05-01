@@ -23,8 +23,8 @@ const Teams = () => {
     setLoading(true); 
 
     Promise.all([
-      axios.get(`http://localhost:5000/teams`),
-      axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/teams`),
+      axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
     ])
     .then(([teamsRes, colorRes]) => {
       setTeams(teamsRes.data);
@@ -40,7 +40,7 @@ const Teams = () => {
   const enjobTitleTypes = [...new Set(teams.map(person => person.enjobtitletype))];
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
       .then((res) => {
         const formattedPage = {
           ...res.data,

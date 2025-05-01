@@ -61,7 +61,7 @@ const General = () => {
   const handleSave = (e) => {
 
     e.preventDefault();
-    axios.put('http://localhost:5000/general', general, {
+    axios.put(`${process.env.REACT_APP_API_URL}/general`, general, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => setMessage('Başarıyla güncellendi!'))
@@ -73,7 +73,7 @@ const General = () => {
 
   // resim silme
   const handleDelete = (imageId) => {
-    axios.delete('http://localhost:5000/general/images',
+    axios.delete(`${process.env.REACT_APP_API_URL}/general/images`,
       {
         data: { imageId },
         headers: { Authorization: `Bearer ${token}` }
@@ -90,7 +90,7 @@ const General = () => {
     newImages.forEach(file => formData.append('images', file));
     formData.append("id", general.id);
 
-    axios.post('http://localhost:5000/general/images', formData, {
+    axios.post(`${process.env.REACT_APP_API_URL}/general/images`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`
@@ -128,7 +128,7 @@ const General = () => {
   // verileri çekme
   const getItems = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/general/admin', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/general/admin`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(res.data)

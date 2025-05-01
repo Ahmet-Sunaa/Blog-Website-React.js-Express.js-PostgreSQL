@@ -24,9 +24,9 @@ const Home = () => {
     const pathSlug = location.pathname.split("/").pop() || "home";
 
     Promise.all([
-      axios.get("http://localhost:5000/posts"),
-      axios.get(`http://localhost:5000/menu-pages/user/${pathSlug}`),
-      axios.get("http://localhost:5000/general/home")
+      axios.get(`${process.env.REACT_APP_API_URL}/posts`),
+      axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${pathSlug}`),
+      axios.get(`${process.env.REACT_APP_API_URL}/general/home`)
 
     ])
     .then(([postsRes, colorRes, homeRes]) => {

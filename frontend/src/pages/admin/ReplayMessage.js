@@ -16,7 +16,7 @@ const ReplyMessage = () => {
   // mesajları göstermek için çekme işlemi
   const fetchMessage = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/message/get-by-id/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/message/get-by-id/${id}`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -32,7 +32,7 @@ const ReplyMessage = () => {
   // cevap gönderme işlemi
   const sendReply = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/message/${id}/reply`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/message/${id}/reply`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

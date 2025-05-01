@@ -51,7 +51,7 @@ const AddProject = () => {
     try {
       // 1. Post'u ekle
       const response = await axios.post(
-        "http://localhost:5000/projects/", // API'yi doğru URL'ye yönlendiriyoruz
+        `${process.env.REACT_APP_API_URL}/projects/`, // API'yi doğru URL'ye yönlendiriyoruz
         { title, content, date, projectOwner, keywords }, // Verileri gönder
         { headers: { Authorization: `Bearer ${token}` } } // Headers'ı ekliyoruz
       );

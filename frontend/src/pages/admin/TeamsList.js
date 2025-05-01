@@ -35,7 +35,7 @@ const TeamsList = () => {
   // verileri çekme
   const fetchTeams = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/teams/admin/get", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/teams/admin/get`, {
         headers: { Authorization: `Bearer ${token}` }
       }).catch((err)=>console.log(err));
       setTeams(response.data);
@@ -54,7 +54,7 @@ const TeamsList = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/teams/delete/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/teams/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

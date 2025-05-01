@@ -17,7 +17,7 @@ const Footer = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/general/footer')
+    axios.get(`${process.env.REACT_APP_API_URL}/general/footer`)
       .then((response) => {
         setFooter(response.data);
       }).catch(() => {

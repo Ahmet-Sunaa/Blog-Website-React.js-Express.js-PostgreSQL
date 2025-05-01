@@ -39,7 +39,7 @@ const ProjectList = () => {
   //verileri çekme işlemi
   const fetchProjects = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/projects/admin", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/projects/admin`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(response.data);
@@ -57,7 +57,7 @@ const ProjectList = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/projects/delete/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/projects/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

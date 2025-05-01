@@ -59,7 +59,7 @@ const EditTeamMember = () => {
     // Mevcut verileri getir
     const fetchTeamMember = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/teams/admin/${id}`,{
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/teams/admin/${id}`,{
                 headers: { Authorization: `Bearer ${token}` }
 
             });
@@ -83,7 +83,7 @@ const EditTeamMember = () => {
             setLinkedinUrl(data.linkedin);
             setResearchGateUrl(data.researchgate);
             setGoogleScholarUrl(data.googlescholar);
-            setPreview(`http://localhost:5000/teams/image/${id}`,{headers: { Authorization: `Bearer ${token}` }});
+            setPreview(`${process.env.REACT_APP_API_URL}/teams/image/${id}`,{headers: { Authorization: `Bearer ${token}` }});
             setIsLoading(false);
         } catch (error) {
             setError("Veri alınırken hata oluştu.");
@@ -108,7 +108,7 @@ const EditTeamMember = () => {
         try {
             // 1. Kullanıcı bilgilerini güncelle
             await axios.put(
-                `http://localhost:5000/teams/update-team-member`,
+                `${process.env.REACT_APP_API_URL}/teams/update-team-member`,
                 { id,priority, name, jobTitle, jobTitleType,enJobTitle,enJobTitleType, email, tel, facebookUrl, instagramUrl, xUrl, youtubeUrl, googleUrl, behanceUrl, githubUrl, pinterestUrl, linkedinUrl, researchGateUrl, googleScholarUrl },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -119,7 +119,7 @@ const EditTeamMember = () => {
                 formData.append("image", image);
                 formData.append("userId", id); // Kullanıcı ID’sini ekle
 
-                await fetch(`http://localhost:5000/teams/image`, {
+                await fetch(`${process.env.REACT_APP_API_URL}/teams/image`, {
                     method: "PUT",
                     body: formData,
                     headers: { Authorization: `Bearer ${token}` },

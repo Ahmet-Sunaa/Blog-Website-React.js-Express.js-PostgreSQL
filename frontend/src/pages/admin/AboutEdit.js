@@ -38,7 +38,7 @@ const AboutEdit = () => {
     console.log(jsonContent)
     console.log(jsonEnContent)
     e.preventDefault();
-    axios.put('http://localhost:5000/about-us',
+    axios.put(`${process.env.REACT_APP_API_URL}/about-us`,
       { title, jsonContent, enTitle, jsonEnContent },
       {
         headers: { Authorization: `Bearer ${token}` }
@@ -52,7 +52,7 @@ const AboutEdit = () => {
 
   //silme fonksiyonu
   const handleDelete = (imageId) => {
-    axios.delete('http://localhost:5000/about-us/images',
+    axios.delete(`${process.env.REACT_APP_API_URL}/about-us/images`,
       {
         data: { imageId },
         headers: { Authorization: `Bearer ${token}` }
@@ -68,7 +68,7 @@ const AboutEdit = () => {
     newImages.forEach(file => formData.append('images', file));
     formData.append("aboutId", aboutId);
 
-    axios.post('http://localhost:5000/about-us/images', formData, {
+    axios.post(`${process.env.REACT_APP_API_URL}/about-us/images`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`
@@ -105,7 +105,7 @@ const AboutEdit = () => {
   // verileri backendden çekme
   const getItems = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/about-us/admin', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/about-us/admin`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   

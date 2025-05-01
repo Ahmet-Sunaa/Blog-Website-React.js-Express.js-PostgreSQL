@@ -27,8 +27,8 @@ const AllPosts = () => {
     const pathSlug = location.pathname.split("/").pop() || "home";
 
     Promise.all([
-      axios.get("http://localhost:5000/posts"),
-      axios.get(`http://localhost:5000/menu-pages/user/${pathSlug}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/posts`),
+      axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${pathSlug}`)
     ])
     .then(([postRes, colorRes]) => {
       if (language === 'tr')
@@ -54,7 +54,7 @@ const AllPosts = () => {
   );
   
   useEffect(() => {
-    axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
       .then((res) => {
         const formattedPage = {
           ...res.data,

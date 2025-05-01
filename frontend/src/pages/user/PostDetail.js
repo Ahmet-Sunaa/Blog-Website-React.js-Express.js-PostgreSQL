@@ -20,7 +20,7 @@ const PostDetail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`http://localhost:5000/posts/user/${id}`)
+      await axios.get(`${process.env.REACT_APP_API_URL}/posts/user/${id}`)
         .then((response) => {
           const page = response.data[0];
           const formattedPages = {
@@ -43,8 +43,8 @@ const PostDetail = () => {
     setIsLoading(true); 
 
     Promise.all([
-      axios.get(`http://localhost:5000/posts/user/${id}`),
-      axios.get("http://localhost:5000/menu-pages/user/blogs")
+      axios.get(`${process.env.REACT_APP_API_URL}/posts/user/${id}`),
+      axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/blogs`)
     ])
     .then(([postRes, colorRes]) => {
       const page = postRes.data[0];

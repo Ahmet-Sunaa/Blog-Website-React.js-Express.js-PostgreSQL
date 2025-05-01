@@ -12,7 +12,7 @@ const PersonCard = ({ id, name, title, member, style }) => {
         <div className="person-card" style={style}>
             <div className="person-image">
                 <img
-                    src={`http://localhost:5000/teams/image/${id}`} 
+                    src={`${process.env.REACT_APP_API_URL}/teams/image/${id}`} 
                     alt={`Image ${name}`}
                 />
 

@@ -18,7 +18,7 @@ const Contact = () => {
     const [adress, setAdress] = useState("");
     
       useEffect(() => {
-        axios.get('http://localhost:5000/message/map-adress')
+        axios.get(`${process.env.REACT_APP_API_URL}/message/map-adress`)
           .then((response) => {
             setAdress(encodeURIComponent(response.data.contactadress)); // adreste bulunan , . gibi karakterleri ve boşluk karakterlerini linke uygun hale getir.
           }).catch((e) => {
@@ -37,7 +37,7 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/message", {
+            await axios.post(`${process.env.REACT_APP_API_URL}/message`, {
                 title,
                 sender_name: senderName,
                 sender_email: senderEmail,
@@ -56,7 +56,7 @@ const Contact = () => {
 
     //Renk Bilgileri için
     useEffect(() => {
-        axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
             .then((res) => {
                 const formattedPage = {
                     ...res.data,

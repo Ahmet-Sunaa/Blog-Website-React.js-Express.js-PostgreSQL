@@ -29,8 +29,8 @@ const Projects = () => {
     const pathSlug = location.pathname.split("/").pop() || "home";
 
     Promise.all([
-      axios.get("http://localhost:5000/projects"),
-      axios.get(`http://localhost:5000/menu-pages/user/${pathSlug}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/projects`),
+      axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${pathSlug}`)
     ])
     .then(([projectsRes, colorRes]) => {
       if (projectsRes.data.length === 0) {
@@ -56,7 +56,7 @@ const Projects = () => {
   );
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
         .then((res) => {
             const formattedPage = {
                 ...res.data,

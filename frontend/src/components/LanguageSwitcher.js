@@ -18,7 +18,7 @@ const LanguageSwitcher = ({ color: initialColor }) => {
     //renk bilgisini ve yazı bilgisini bakcendden alma işlemi
     const fetchColor = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/general/language-switcher");
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/general/language-switcher`);
             setColor(response.data);  // ✅ color state'ini güncelle
         } catch (e) {
             console.error("Hata meydana geldi", e);

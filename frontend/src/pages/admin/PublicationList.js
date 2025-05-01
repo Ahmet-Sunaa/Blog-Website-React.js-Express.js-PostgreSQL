@@ -38,7 +38,7 @@ const PublicationsList = () => {
   // verileri çekme işlemi
   const fetchpublications = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/publications/admin", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/publications/admin` , {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPublications(response.data);
@@ -57,7 +57,7 @@ const PublicationsList = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/publications/delete/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/publications/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

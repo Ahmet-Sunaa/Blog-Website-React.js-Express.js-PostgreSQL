@@ -17,7 +17,7 @@ const Entries = (color) => {
 
     // API'den giriş verilerini almak için useEffect kullanılıyor.
     useEffect(() => {
-        axios.get('http://localhost:5000/general/entries')
+        axios.get(`${process.env.REACT_APP_API_URL}/general/entries`)
             .then((response) => {
                 setHome(response.data); // Gelen veriyi state'e kaydediyoruz.
             }).catch(() => {

@@ -39,7 +39,7 @@ const BlogList = () => {
     // blogları çekme işlemi
     const fetchBlogs = async () => {
         try {
-            await axios.get("http://localhost:5000/posts/admin-get", {
+            await axios.get(`${process.env.REACT_APP_API_URL}/posts/admin-get`, {
                 headers: { Authorization: `Bearer ${token}` },
             }).then((response) => {
                 const formattedPages = response.data.map(page => ({
@@ -57,7 +57,7 @@ const BlogList = () => {
 
 
             axios
-                .get("http://localhost:5000/images", {
+                .get(`${process.env.REACT_APP_API_URL}/images` , {
                     headers: { Authorization: `Bearer ${token}` },
                 }).then((response) => {
                     setImages(response.data); // API'den gelen resimleri state'e kaydet
@@ -77,7 +77,7 @@ const BlogList = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Bu sayfayı silmek istediğinizden emin misiniz?")) {
             try {
-                await axios.delete(`http://localhost:5000/posts/${id}`, {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/posts/${id}`, {
                     headers: { Authorization: `Bearer ${token}` },
 
                 }).catch(() => localStorage.removeItem("token"));
@@ -195,12 +195,12 @@ const BlogList = () => {
 
 
             if (isEditing) {
-                await axios.put(`http://localhost:5000/posts/update/${currentBlogs.id}`, updatedPage, {
+                await axios.put(`${process.env.REACT_APP_API_URL}/posts/update/${currentBlogs.id}`, updatedPage, {
                     headers: { Authorization: `Bearer ${token}` }
 
                 }).catch(() => localStorage.removeItem("token"));
 
-                await axios.delete(`http://localhost:5000/images/post-images/${currentBlogs.id}`, {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/images/post-images/${currentBlogs.id}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 }).catch(() => localStorage.removeItem("token"));
 
@@ -209,7 +209,7 @@ const BlogList = () => {
                 selectedImages.forEach(async (imageId) => {
                     if (imageId !== null) {
                         await axios.post(
-                            "http://localhost:5000/posts/post-images",
+                            `${process.env.REACT_APP_API_URL}/posts/post-images`,
                             { postId: updatedPage.id, imageId },
                             { headers: { Authorization: `Bearer ${token}` } }
                         ).catch(() => localStorage.removeItem("token"));
@@ -218,14 +218,14 @@ const BlogList = () => {
                 });
 
             } else {
-                const postId = await axios.post("http://localhost:5000/posts", updatedPage, {
+                const postId = await axios.post(`${process.env.REACT_APP_API_URL}/posts`, updatedPage, {
                     headers: { Authorization: `Bearer ${token}` },
                 }).catch(() => localStorage.removeItem("token"));
 
 
                 selectedImages.forEach(async (imageId) => {
                     await axios.post(
-                        "http://localhost:5000/posts/post-images",
+                        `${process.env.REACT_APP_API_URL}/posts/post-images`,
                         { postId: postId.data, imageId },
                         { headers: { Authorization: `Bearer ${token}` } }
                     ).catch(() => localStorage.removeItem("token"));
@@ -320,7 +320,7 @@ const BlogList = () => {
     // Veritabanında position değerini güncelleyen API fonksiyonu
     const updatePageOrder = async (page) => {
         try {
-            await fetch(`http://localhost:5000/posts/change-position`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/posts/change-position`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

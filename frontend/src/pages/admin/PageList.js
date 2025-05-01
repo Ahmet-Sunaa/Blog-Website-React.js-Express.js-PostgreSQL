@@ -49,7 +49,7 @@ const PageList = () => {
     //sayfaları backendden çekme işlemi
     const fetchPages = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/menu-pages/admin-get", { headers: { Authorization: `Bearer ${token}` } });
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/admin-get`, { headers: { Authorization: `Bearer ${token}` } });
             const formattedPages = response.data.map(page => ({
                 ...page,
                 content_data: page.content_data ? JSON.parse(page.content_data) : [] // JSON parse işlemi yap
@@ -66,7 +66,7 @@ const PageList = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Bu sayfayı silmek istediğinizden emin misiniz?")) {
             try {
-                await axios.delete(`http://localhost:5000/menu-pages/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+                await axios.delete(`${process.env.REACT_APP_API_URL}/menu-pages/${id}`, { headers: { Authorization: `Bearer ${token}` } });
                 fetchPages(); // Listeyi güncelle
             } catch {
                 localStorage.removeItem("token");
@@ -190,9 +190,9 @@ const PageList = () => {
                 setError("Linki girin")
             } else {
                 if (isEditing) {
-                    await axios.put(`http://localhost:5000/menu-pages/update/${currentPage.id}`, updatedPage, { headers: { Authorization: `Bearer ${token}` } });
+                    await axios.put(`${process.env.REACT_APP_API_URL}/menu-pages/update/${currentPage.id}`, updatedPage, { headers: { Authorization: `Bearer ${token}` } });
                 } else {
-                    await axios.post("http://localhost:5000/menu-pages", updatedPage, { headers: { Authorization: `Bearer ${token}` } });
+                    await axios.post(`${process.env.REACT_APP_API_URL}/menu-pages`, updatedPage, { headers: { Authorization: `Bearer ${token}` } });
                 }
                 setShowModal(false);
                 fetchPages(); // Güncellenmiş listeyi getir
@@ -298,7 +298,7 @@ const PageList = () => {
     // Veritabanında pageno değerini güncelleyen API fonksiyonu
     const updatePageOrder = async (page) => {
         try {
-            await fetch(`http://localhost:5000/menu-pages/change-pageno`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/menu-pages/change-pageno`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -317,7 +317,7 @@ const PageList = () => {
     const handleSaveUnderPage = async () => {
         try {
             currentPage.uid.map((id, index) => {
-                return axios.put("http://localhost:5000/menu-pages/under-page-update", {
+                return axios.put(`${process.env.REACT_APP_API_URL}/menu-pages/under-page-update`, {
                     id: id,
                     title: currentPage.utitle[index],
                     filter: currentPage.filter[index],
@@ -343,7 +343,7 @@ const PageList = () => {
     const handleAddNewUnderPage = async () => {
         try {
             console.log(newUnderPageActive)
-            axios.post("http://localhost:5000/menu-pages/under-page-add", {
+            axios.post(`${process.env.REACT_APP_API_URL}/menu-pages/under-page-add`, {
                 pageId: currentPage.id,
                 title: newUnderPageTitle,
                 filter: newUnderPageFilter === null ? "" : newUnderPageFilter,
@@ -369,7 +369,7 @@ const PageList = () => {
     // alt başlık silme
     const handleDeleteUnderPage = async (id) => {
         try {
-            axios.delete(`http://localhost:5000/menu-pages/under-page-delete/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+            axios.delete(`${process.env.REACT_APP_API_URL}/menu-pages/under-page-delete/${id}`, { headers: { Authorization: `Bearer ${token}` } });
             fetchPages();
             alert("Alt Başlık Başarıyla Silindi");
             setShowModalUnderPage(false);

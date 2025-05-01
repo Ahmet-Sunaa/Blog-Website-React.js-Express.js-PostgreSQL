@@ -23,7 +23,7 @@ const PageTemplate = () => {
 
   useEffect(() => {
 
-    axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
       .then((res) => {
         // verilerde bulunan slate editör verilerini parse etme        
         const formattedPage = {

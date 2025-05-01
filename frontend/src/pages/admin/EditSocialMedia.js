@@ -49,7 +49,7 @@ const EditSocialMedia = () => {
     // Mevcut verileri getir
     const fetchTeamMember = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/social-media`,{
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/social-media`,{
                 headers: { Authorization: `Bearer ${token}` }
 
             });
@@ -82,7 +82,7 @@ const EditSocialMedia = () => {
         try {
             // 1. Kullanıcı bilgilerini güncelle
             await axios.put(
-                `http://localhost:5000/social-media/`,
+                `${process.env.REACT_APP_API_URL}/social-media/`,
                 {facebookUrl, instagramUrl, xUrl, youtubeUrl, googleUrl, behanceUrl, githubUrl, pinterestUrl, linkedinUrl, researchGateUrl, googleScholarUrl },
                 { headers: { Authorization: `Bearer ${token}` } }
             ).catch(() => {

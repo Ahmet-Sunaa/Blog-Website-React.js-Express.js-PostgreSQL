@@ -25,7 +25,7 @@ const ImageManager = () => {
     // resim çekme işlemi
   const fetchImages = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/images", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/images`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setImages(response.data);
@@ -44,7 +44,7 @@ const ImageManager = () => {
     newImages.forEach(file => formData.append("images", file));
   
     try {
-      await axios.post("http://localhost:5000/images", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/images`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const ImageManager = () => {
   
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/images/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/images/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchImages();

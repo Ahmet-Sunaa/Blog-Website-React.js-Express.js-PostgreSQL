@@ -16,8 +16,8 @@ const Topbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const socialRes = await axios.get(`http://localhost:5000/social-media/public`);
-        const colorRes = await axios.get("http://localhost:5000/general/topbar");
+        const socialRes = await axios.get(`${process.env.REACT_APP_API_URL}/social-media/public`);
+        const colorRes = await axios.get(`${process.env.REACT_APP_API_URL}/general/topbar`);
         
         setSocialLinks(socialRes.data);
         setColor(colorRes.data);

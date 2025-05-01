@@ -34,7 +34,7 @@ const Users = () => {
     // verileri çekme işlemi
     const fetchUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/users", {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/users`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setUsers(response.data);
@@ -54,7 +54,7 @@ const Users = () => {
     const handleUpdateUser = async () => {
 /*
         try {
-            await axios.put(`http://localhost:5000/users`, editingUser, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/users`, editingUser, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -70,7 +70,7 @@ const Users = () => {
     // kullanıcı silme
     const handleDeleteUser = async () => {
         /*try {
-            await axios.delete(`http://localhost:5000/users`, {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/users`, {
                 headers: { Authorization: `Bearer ${token}` },
                 data: { id: editingUser.id, password: editingUser.oldpassword }  // Doğru kullanım!
             });

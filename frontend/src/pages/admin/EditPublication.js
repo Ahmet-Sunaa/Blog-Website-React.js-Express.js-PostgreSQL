@@ -47,7 +47,7 @@ const EditPublication = () => {
   // yayınları çekme
   const getItems = async () => {
     axios
-      .get(`http://localhost:5000/publications/publications/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/publications/publications/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -73,7 +73,7 @@ const EditPublication = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/publications/update-publications`,
+        `${process.env.REACT_APP_API_URL}/publications/update-publications`,
         { id, title, date, keywords, link, enTitle, enKeywords },
         { headers: { Authorization: `Bearer ${token}` } }
       );

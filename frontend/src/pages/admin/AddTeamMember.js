@@ -75,7 +75,7 @@ const AddTeamMember = () => {
         try {
             // 1. Post'u ekle
             const response = await axios.post(
-                "http://localhost:5000/teams/", // API'yi doğru URL'ye yönlendiriyoruz
+                `${process.env.REACT_APP_API_URL}/teams/`, // API'yi doğru URL'ye yönlendiriyoruz
                 { name, priority, jobTitle, jobTitleType, enJobTitle, enJobTitleType, image, email, tel, facebookUrl, instagramUrl, xUrl, youtubeUrl, googleUrl, behanceUrl, githubUrl, pinterestUrl, linkedinUrl, researchGateUrl, googleScholarUrl }, // Verileri gönder
                 { headers: { Authorization: `Bearer ${token}` } } // Headers'ı ekliyoruz
             );
@@ -87,7 +87,7 @@ const AddTeamMember = () => {
                 formData.append("image", image);
             }
 
-            await fetch("http://localhost:5000/teams/image", {
+            await fetch(`${process.env.REACT_APP_API_URL}/teams/image`, {
                 method: "PUT",
                 body: formData,
                 headers: { Authorization: `Bearer ${token}` }

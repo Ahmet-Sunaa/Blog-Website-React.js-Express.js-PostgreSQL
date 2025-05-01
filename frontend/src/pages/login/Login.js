@@ -16,14 +16,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/login', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
         username,
         password
       });
       
       localStorage.setItem('token', response.data.token);
 
-      const user = await axios.get('http://localhost:5000/auths/me', {
+      const user = await axios.get(`${process.env.REACT_APP_API_URL}/auths/me`, {
         headers: { Authorization: `Bearer ${response.data.token}` },
       })
 

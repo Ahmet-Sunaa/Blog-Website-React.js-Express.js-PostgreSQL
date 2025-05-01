@@ -49,7 +49,7 @@ const Header = () => {
 
     // Menü verilerini çekme fonksiyonu
   const getMenu = async () => {
-    await axios.get("http://localhost:5000/menu-pages")
+    await axios.get(`${process.env.REACT_APP_API_URL}/menu-pages`)
       .then(res => {
         setPages(res.data);
       }).catch("Hata oluştu");
@@ -64,7 +64,7 @@ const Header = () => {
     } else {
       setUser(null);
     }
-    const res = await axios.get("http://localhost:5000/general/header");
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/general/header`);
     setHeader(res.data);
   };
 

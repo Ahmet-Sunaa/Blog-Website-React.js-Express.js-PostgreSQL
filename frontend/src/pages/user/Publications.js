@@ -17,32 +17,7 @@ const Publications = () => {
     const filters = params.get('filter');
     const [page, setPage] = useState(null);
     const slug = location.pathname.split("/").pop();
-    // useEffect(() => {
 
-    //     if (filters !== null) {
-    //         setSelectedDate(filters.match(/\d+/g) === null ? "" : filters.match(/\d+/g)[0]);
-    //         setSearch(filters.match(/[a-zA-Z]+/g) === null ? "" : filters.match(/[a-zA-Z]+/g).map(filter => filter).join(" "));
-    //     }
-
-    //     axios
-    //         .get("http://localhost:5000/publications")
-    //         .then((response) => {
-    //             if (response.data.length === 0) {
-    //                 setError("Proje yok.");
-    //             } else {
-    //                 if (language === 'tr')
-    //                     setPublications(response.data);
-    //                 else {
-    //                     setPublications(response.data.filter((publication) => publication.entitle !== null));
-
-    //                 }
-    //             }
-    //         })
-    //         .catch(() => {
-    //             setError("Projeler yüklenirken bir hata oluştu.");
-    //         })
-    //         .finally(() => setLoading(false));
-    // }, []);
 
     useEffect(() => {
         const pathSlug = location.pathname.split("/").pop() || "home";
@@ -53,8 +28,8 @@ const Publications = () => {
         }
 
         Promise.all([
-            axios.get("http://localhost:5000/publications"),
-            axios.get(`http://localhost:5000/menu-pages/user/${pathSlug}`)
+            axios.get(`${process.env.REACT_APP_API_URL}/publications`),
+            axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${pathSlug}`)
         ])
             .then(([publicationsRes, colorRes]) => {
                 if (publicationsRes.data.length === 0) {
@@ -87,7 +62,7 @@ const Publications = () => {
     console.log(color);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/menu-pages/user/${slug}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/menu-pages/user/${slug}`)
             .then((res) => {
                 const formattedPage = {
                     ...res.data,
