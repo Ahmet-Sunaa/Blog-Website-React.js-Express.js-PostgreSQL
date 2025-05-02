@@ -521,7 +521,7 @@ const PageList = () => {
 
                                 </React.Fragment>
                             )}
-                            {currentPage.slug !== '/home' && currentPage.slug !== '/contact' && currentPage.slug !== '/about-us' && currentPage.slug !== '/blogs' && currentPage.slug !== '/publications' && currentPage.slug !== '/projects' && currentPage.slug !== '/teams' && (
+                            {currentPage.slug !== '/home' && currentPage.slug !== '/contact' && currentPage.slug !== '/about-us-' && currentPage.slug !== '/blogs' && currentPage.slug !== '/all-publications' && currentPage.slug !== '/all-projects' && currentPage.slug !== '/all-teams' && (
                                 <>
                                     <Form.Group>
                                         <Form.Label>Url Uzantısı (En Başa '/' Ekleyin)</Form.Label>
@@ -623,7 +623,7 @@ const PageList = () => {
                                 </div>
                             ))}
 
-                            {currentPage.slug !== '/home' && currentPage.slug !== '/contact' && currentPage.slug !== '/about-us' && currentPage.slug !== '/blogs' && currentPage.slug !== '/publications' && currentPage.slug !== '/projects' && currentPage.slug !== '/teams' && (
+                            {currentPage.slug !== '/home' && currentPage.slug !== '/contact' && currentPage.slug !== '/about-us-' && currentPage.slug !== '/blogs' && currentPage.slug !== '/all-publications' && currentPage.slug !== '/all-projects' && currentPage.slug !== '/all-teams' && (
                                 <>
 
                                     <Button variant="outline-secondary" onClick={() => addContentBlock("paragraph")}>

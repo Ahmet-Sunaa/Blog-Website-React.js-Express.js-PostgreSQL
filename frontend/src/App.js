@@ -52,13 +52,13 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/post/:id" element={<PostDetail />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about-us-" element={<AboutUs />} />
           <Route path="/blogs" element={<AllPosts />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route path="/all-projects" element={<Projects />} />
           <Route path="/projects/project-detail/:id" element={<ProjectDetail />} />
-          <Route path="/publications" element={<Publications />} />
-          <Route path="/teams" element={<Teams />} />
+          <Route path="/all-publications" element={<Publications />} />
+          <Route path="/all-teams" element={<Teams />} />
           <Route path="/teams/member/:id" element={<MemberDetail />} />
           <Route path="/:slug" element={<PageTemplate />} />
 
