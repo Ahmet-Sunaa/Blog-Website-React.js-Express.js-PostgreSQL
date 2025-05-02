@@ -96,7 +96,7 @@ router.get("/admin",authenticateAdmin, async (req, res) => {
 router.put('/',authenticateAdmin, async (req, res) => {
   const { title, jsonContent, enTitle, jsonEnContent } = req.body;
   try {
-    await pool.query('UPDATE about SET title = $1, content = $2, entitle = $3, encontent = $4 WHERE id = 9', [title, jsonContent, enTitle, jsonEnContent]);
+    await pool.query('UPDATE about SET title = $1, content = $2, entitle = $3, encontent = $4 WHERE id = 1', [title, jsonContent, enTitle, jsonEnContent]);
     res.json({ message: 'Başarıyla güncellendi' });
   } catch (error) {
     console.error(error);
