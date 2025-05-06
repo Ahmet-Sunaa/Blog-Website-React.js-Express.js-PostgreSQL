@@ -1,6 +1,6 @@
 # 🌐 Blog Web Sitesi | Blog Website
 
-## Live https://blog-website-react-js-express-js.onrender.com/
+## Live: https://blog-website-react-js-express-js.onrender.com/
 
 ## 🇹🇷 Türkçe Açıklama
 
